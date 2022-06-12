@@ -17,10 +17,13 @@ RUN groupadd --gid $USER_GID $USERNAME \
 RUN apt-get update \
     && apt-get install -y git curl vim htop
 
-RUN pip3 install pylint black
+RUN pip3 install pylint black \
+    debugpy
 
 # Install Node 14
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get install -y nodejs
 
 RUN npm install -g npm@latest
+
+EXPOSE 5678
